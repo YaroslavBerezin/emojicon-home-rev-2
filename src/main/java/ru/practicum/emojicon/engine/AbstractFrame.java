@@ -3,10 +3,10 @@ package ru.practicum.emojicon.engine;
 import com.googlecode.lanterna.TextColor;
 
 public abstract class AbstractFrame implements Frame {
-    private int left;
-    private int top;
-    private int right;
-    private int bottom;
+    final private int left;
+    final private int top;
+    final private int right;
+    final private int bottom;
 
     private int posX;
     private int posY;

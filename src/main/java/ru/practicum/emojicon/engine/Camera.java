@@ -8,20 +8,13 @@ import java.util.List;
 import java.util.UUID;
 
 public class Camera {
-    private Logger log = LoggerFactory.getLogger(getClass());
-
+    private final Logger log = LoggerFactory.getLogger(getClass());
     private final Engine engine;
-
     private int left;
-
     private int top;
-
     private int right;
-
     private int bottom;
-
     private int dx;
-
     private int dy;
 
     public Camera(Engine engine, int left, int top, int right, int bottom) {
@@ -86,6 +79,7 @@ public class Camera {
 
     public void handleSelection(Controller controller) {
         List<UUID> selectedIds = controller.getSelection();
+
         if (selectedIds.size() == 1) {
             engine.findEntity(selectedIds.get(0)).filter(e -> e instanceof Boxed).map(e -> (Boxed) e).ifPresent(box -> {
                 int hotLeft = this.left + dx;

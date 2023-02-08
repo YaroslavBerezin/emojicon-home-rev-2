@@ -9,9 +9,8 @@ import ru.practicum.emojicon.engine.*;
 import java.util.*;
 
 public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObjectHolder, Controller {
-    private Logger log = LoggerFactory.getLogger(getClass());
-
-    private List<EmojiWorldObject> objects = new ArrayList<>();
+    private final Logger log = LoggerFactory.getLogger(getClass());
+    private final List<EmojiWorldObject> objects = new ArrayList<>();
     private UUID selection = null;
     private List<List<Byte>> landscape;
 
@@ -82,13 +81,18 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
 
     @Override
     public void handleKey(KeyStroke key) {
-        objects.stream().filter(obj -> obj.getId().equals(selection)).filter(obj -> obj instanceof Controllable).map(obj -> (Controllable) obj).forEach(obj -> {
+        objects.stream()
+                .filter(obj -> obj.getId().equals(selection))
+                .filter(obj -> obj instanceof Controllable)
+                .map(obj -> (Controllable) obj)
+                .forEach(obj -> {
             switch (key.getKeyType()) {
                 case ArrowDown:
                 case ArrowLeft:
                 case ArrowUp:
                 case ArrowRight:
                     Point pt = null;
+
                     switch (key.getKeyType()) {
                         case ArrowDown:
                             pt = new Point(0, 1);
@@ -105,6 +109,7 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
                         default:
                             throw new IllegalArgumentException();
                     }
+
                     obj.move(pt);
                     break;
                 default:
