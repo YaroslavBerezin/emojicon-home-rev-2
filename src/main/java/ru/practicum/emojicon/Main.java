@@ -26,7 +26,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class Main {
-
     private final static Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) throws Exception {
@@ -49,22 +48,27 @@ public class Main {
         KeyStroke key;
         List<Emoji> emojiList = new ArrayList<>(EmojiManager.getAll());
         int emojiCode = 0;
+
         do {
             screen.clear();
             int row = 1;
             int col = 0;
             Emoji emoji = emojiList.get(emojiCode);
+
             try {
                 TextCharacter[] chars = TextCharacter.fromString(emoji.getUnicode());
-                screen.setCharacter(0, 0,TextCharacter.fromString(Integer.toString(chars.length))[0]);
-                for(int c = 0; c < chars.length; c++){
+                screen.setCharacter(0, 0, TextCharacter.fromString(Integer.toString(chars.length))[0]);
+
+                for (int c = 0; c < chars.length; c++) {
                     screen.setCharacter(col, row, chars[0].withBackgroundColor(TextColor.ANSI.GREEN_BRIGHT).withForegroundColor(TextColor.ANSI.BLACK));
                     col += c;
                 }
+
                 log.info("emoji {}", emoji.getAliases());
-            } catch (IllegalArgumentException e){
+            } catch (IllegalArgumentException e) {
                 log.error("illegal symbol {}", emoji.getAliases());
             }
+
             Thread.sleep(25);
             screen.refresh();
             key = screen.pollInput();

@@ -6,12 +6,11 @@ import com.vdurmont.emoji.EmojiManager;
 import ru.practicum.emojicon.engine.Frame;
 
 public class EmojiCat extends EmojiObject {
-
     Emoji emoji;
     String name;
     TextColor color = TextColor.ANSI.GREEN;
 
-    public EmojiCat(String name){
+    public EmojiCat(String name) {
         this.name = name;
         this.emoji = EmojiManager.getForAlias("cat");
         this.setWidth(2);

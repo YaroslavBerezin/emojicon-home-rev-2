@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class Engine implements Runnable, EntityResolver {
-
     //время одного кадра при частоте в 60 FPS
     private static final Long FRAME_TIME = 1000L / 60;
     private final Terminal terminal;
@@ -52,6 +51,7 @@ public class Engine implements Runnable, EntityResolver {
         try {
             screen.startScreen();
             KeyStroke key;
+
             do {
                 key = screen.pollInput();
                 screen.clear();
@@ -80,8 +80,9 @@ public class Engine implements Runnable, EntityResolver {
     }
 
     private void handleEngineKey(KeyStroke key) throws IOException {
-        if (key == null)
+        if (key == null) {
             return;
+        }
 
         if (key.getKeyType().equals(KeyType.Character) && key.getCharacter().equals(' ')) {
             terminal.bell();

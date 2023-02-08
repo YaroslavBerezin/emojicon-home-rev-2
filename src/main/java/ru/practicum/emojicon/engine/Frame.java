@@ -4,7 +4,6 @@ import com.googlecode.lanterna.TextColor;
 import com.vdurmont.emoji.Emoji;
 
 public interface Frame extends Boxed {
-
     int getPosX();
 
     int getPosY();

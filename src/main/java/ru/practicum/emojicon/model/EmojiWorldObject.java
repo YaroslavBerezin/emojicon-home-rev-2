@@ -5,7 +5,6 @@ import ru.practicum.emojicon.engine.*;
 import java.util.UUID;
 
 public class EmojiWorldObject implements Boxed, Drawable, Controllable, Entity {
-
     private final EmojiObjectHolder parent;
     private final UUID id;
     private final EmojiObject inner;
@@ -19,8 +18,11 @@ public class EmojiWorldObject implements Boxed, Drawable, Controllable, Entity {
         this.inner = obj;
         this.x = position.getX();
         this.y = position.getY();
-        if(!parent.isFreeArea(getLeft(), getTop(), getRight(), getBottom()))
+
+        if (!parent.isFreeArea(getLeft(), getTop(), getRight(), getBottom())) {
             throw new IllegalArgumentException();
+        }
+
         this.z = 0;
         this.id = UUID.randomUUID();
     }
@@ -64,7 +66,8 @@ public class EmojiWorldObject implements Boxed, Drawable, Controllable, Entity {
         int nextTop = y + step.getY();
         int nextRight = nextLeft + inner.getWidth();
         int nextBottom = nextTop + inner.getHeight();
-        if(parent.isFreeArea(nextLeft, nextTop, nextRight, nextBottom)){
+
+        if (parent.isFreeArea(nextLeft, nextTop, nextRight, nextBottom)) {
             x = nextLeft;
             y = nextTop;
             return true;

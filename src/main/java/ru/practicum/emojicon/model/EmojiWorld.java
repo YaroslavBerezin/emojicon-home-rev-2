@@ -9,14 +9,13 @@ import ru.practicum.emojicon.engine.*;
 import java.util.*;
 
 public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObjectHolder, Controller {
-
     private Logger log = LoggerFactory.getLogger(getClass());
 
     private List<EmojiWorldObject> objects = new ArrayList<>();
     private UUID selection = null;
     private List<List<Byte>> landscape;
 
-    public EmojiWorld(){
+    public EmojiWorld() {
         this.initEarth(2048, 2048);
         log.info("world created");
     }
@@ -25,11 +24,14 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
         this.setWidth(width);
         this.setHeight(height);
         List<List<Byte>> hMap = new ArrayList<>();
-        for(int x = 0; x<width; x++){
+
+        for (int x = 0; x < width; x++) {
             List<Byte> hRow = new ArrayList<>();
-            for(int y = 0; y < height; y++){
+
+            for (int y = 0; y < height; y++) {
                 hRow.add((byte) 0);
             }
+
             hMap.add(hRow);
         }
         this.landscape = hMap;
@@ -53,8 +55,8 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
     }
 
     private void drawEarth(Frame frame) {
-        for(int x = Math.max(0, frame.getLeft()); x <= Math.min(getWidth(), frame.getRight()); x++){
-            for (int y = Math.max(0, frame.getTop()); y <= Math.min(getHeight(), frame.getBottom()); y++){
+        for (int x = Math.max(0, frame.getLeft()); x <= Math.min(getWidth(), frame.getRight()); x++) {
+            for (int y = Math.max(0, frame.getTop()); y <= Math.min(getHeight(), frame.getBottom()); y++) {
                 frame.setPosition(x, y);
                 frame.setFillColor(TextColor.ANSI.BLACK_BRIGHT);
                 frame.paint();
@@ -71,7 +73,7 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
 
     @Override
     public boolean isFreeArea(int left, int top, int right, int bottom) {
-        return left >= 0 && top >=0 && right <= getWidth() && bottom <= getHeight(); // пока всё поле пустое
+        return left >= 0 && top >= 0 && right <= getWidth() && bottom <= getHeight(); // пока всё поле пустое
     }
 
     private void addWorldObject(EmojiWorldObject obj) {
@@ -81,13 +83,13 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
     @Override
     public void handleKey(KeyStroke key) {
         objects.stream().filter(obj -> obj.getId().equals(selection)).filter(obj -> obj instanceof Controllable).map(obj -> (Controllable) obj).forEach(obj -> {
-            switch (key.getKeyType()){
+            switch (key.getKeyType()) {
                 case ArrowDown:
                 case ArrowLeft:
                 case ArrowUp:
                 case ArrowRight:
                     Point pt = null;
-                    switch (key.getKeyType()){
+                    switch (key.getKeyType()) {
                         case ArrowDown:
                             pt = new Point(0, 1);
                             break;
@@ -106,8 +108,7 @@ public class EmojiWorld extends EmojiObject implements EntityResolver, EmojiObje
                     obj.move(pt);
                     break;
                 default:
-
-                }
+            }
         });
     }
 

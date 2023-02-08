@@ -73,18 +73,19 @@ public abstract class AbstractFrame implements Frame {
     }
 
     //set background color
-    public void setFillColor(TextColor fillColor){
+    public void setFillColor(TextColor fillColor) {
         this.fillColor = fillColor;
     }
 
     //set paint color
-    public void setColor(TextColor color){
+    public void setColor(TextColor color) {
         this.color = color;
     }
 
-    public void setTransparentColor(TextColor color){
-        if(this.transparentColor == null)
+    public void setTransparentColor(TextColor color) {
+        if (this.transparentColor == null) {
             throw new IllegalArgumentException();
+        }
         this.transparentColor = color;
     }
 }

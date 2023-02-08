@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 public class Camera {
-
     private Logger log = LoggerFactory.getLogger(getClass());
 
     private final Engine engine;
@@ -67,12 +66,12 @@ public class Camera {
         this.bottom = bottom;
     }
 
-    public void setLeftTop(Point point){
+    public void setLeftTop(Point point) {
         this.left = point.getX();
         this.top = point.getY();
     }
 
-    public void setRightBottom(Point point){
+    public void setRightBottom(Point point) {
         this.right = point.getX();
         this.bottom = point.getY();
     }
@@ -87,19 +86,21 @@ public class Camera {
 
     public void handleSelection(Controller controller) {
         List<UUID> selectedIds = controller.getSelection();
-        if(selectedIds.size() == 1) {
+        if (selectedIds.size() == 1) {
             engine.findEntity(selectedIds.get(0)).filter(e -> e instanceof Boxed).map(e -> (Boxed) e).ifPresent(box -> {
                 int hotLeft = this.left + dx;
                 int hotTop = this.top + dy;
                 int hotRight = this.right + dx;
                 int hotBottom = this.bottom + dy;
+
                 //двигаем по одному пикселю, тогда камера будет сдвигаться медленее, покадрово
-                if(box.getRight() > 0 && box.getRight() <= hotLeft){
+                if (box.getRight() > 0 && box.getRight() <= hotLeft) {
                     dx--;
-                } else if (box.getLeft() >= hotRight){
+                } else if (box.getLeft() >= hotRight) {
                     dx++;
                 }
-                if(box.getBottom() > 0 && box.getBottom() <= hotTop) {
+
+                if (box.getBottom() > 0 && box.getBottom() <= hotTop) {
                     dy--;
                 } else if (box.getTop() >= hotBottom) {
                     dy++;

@@ -3,7 +3,6 @@ package ru.practicum.emojicon.engine;
 import com.googlecode.lanterna.TerminalSize;
 
 public class Point {
-
     private int x;
     private int y;
 

@@ -5,12 +5,11 @@ import com.vdurmont.emoji.Emoji;
 
 //фрейм для изолированного рисования объектов, пока наследуем от Frame.
 public class TranslatedFrame extends AbstractFrame {
-
     private final Frame rootFrame;
     private int dx;
     private int dy;
 
-    public TranslatedFrame(Frame rootFrame, Point dp){
+    public TranslatedFrame(Frame rootFrame, Point dp) {
         super(0, 0, Integer.MAX_VALUE, Integer.MAX_VALUE);
         this.rootFrame = rootFrame;
         this.dx = dp.getX();

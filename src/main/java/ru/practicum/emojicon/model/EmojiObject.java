@@ -3,7 +3,6 @@ package ru.practicum.emojicon.model;
 import ru.practicum.emojicon.engine.Drawable;
 
 public abstract class EmojiObject implements Drawable {
-
     private int width;
     private int height;
 
@@ -22,5 +21,4 @@ public abstract class EmojiObject implements Drawable {
     public void setHeight(int height) {
         this.height = height;
     }
-
 }

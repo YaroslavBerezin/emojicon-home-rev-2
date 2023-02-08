@@ -18,8 +18,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class EmojiHelp implements Drawable {
-
-
     private final Engine engine;
     private final EmojiWorld world;
 
@@ -45,6 +43,7 @@ public class EmojiHelp implements Drawable {
         text.putString(frame.getRight() - escape.length() + 1, frame.getBottom(), escape);
 
         List<UUID> selection = world.getSelection();
+
         if (selection.size() == 1) {
             world.findEntity(selection.get(0)).filter(entity -> entity instanceof EmojiWorldObject).map(entity -> (EmojiWorldObject) entity).filter(obj -> obj.getInner() instanceof EmojiCat).ifPresent(catObj -> {
                 String pos = catObj.getX() + ":" + catObj.getY();
